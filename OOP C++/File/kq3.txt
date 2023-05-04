@@ -1,0 +1,4 @@
+
+ cac so chan =  2
+ cac so chan =  4
+ cac so chan =  4
