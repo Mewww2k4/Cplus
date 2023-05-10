@@ -43,10 +43,10 @@ class Rectangle: public Shape{
 };
 int main()
 {
-    Shape *t;
+    Shape *t; // pointer t;
     Triangle a;
     a.GetData();
-    t = &a;
+     t = &a; //
     t->DisplayArea();
     Rectangle b;
     b.GetData();
