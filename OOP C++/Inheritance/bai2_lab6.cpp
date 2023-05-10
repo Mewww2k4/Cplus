@@ -5,7 +5,7 @@ class Shape{
   public:
     double h;
     double b;
-
+  // constructor 
   Shape()
   {
     h = 0;
@@ -19,6 +19,7 @@ class Shape{
       cout << " Input base : ";
       cin >> b;
     }
+    //khai bao ham ao
     virtual void DisplayArea()
     {
         
@@ -42,11 +43,14 @@ class Rectangle: public Shape{
 };
 int main()
 {
-      Triangle a;
-      a.GetData();
-      a.DisplayArea();
-      Rectangle b;
-      b.GetData();
-      b.DisplayArea();
-      return 0;
+    Shape *t;
+    Triangle a;
+    a.GetData();
+    t = &a;
+    t->DisplayArea();
+    Rectangle b;
+    b.GetData();
+    t = &b;
+    t->DisplayArea();
+    return 0;
 }
