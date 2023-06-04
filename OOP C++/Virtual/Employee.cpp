@@ -49,7 +49,7 @@ public:
     cin >> bonus;
   }
 
-   void Output() {
+  virtual void Output() {
     Employee::Output();
     cout << "\tDepartment in charge: " << dept << "\tPosition allowances: " << bonus;
   }
