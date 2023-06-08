@@ -40,7 +40,7 @@ Complex Complex::add(Complex c) {
 }
 
 int main() {
-    Complex a(3, 4);
+    Complex a(3, -4);
     Complex b(2, -5);
 
     cout << "c1 = ";
