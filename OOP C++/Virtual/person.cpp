@@ -30,7 +30,7 @@ public:
     virtual double calculate() = 0;
 };
 
-class Inpatient : public Person {
+class Outpatient : public Person { //ngoai tru hay noi tru day a cho xiu ngoai do viet lon:<
 private:
     string diseaseName;
     double medicalExpenses;
@@ -39,7 +39,9 @@ public:
     void input() {
         Person::input();
         cout << "Enter Disease Name: ";
-        cin.ignore();
+        //cin.ignore();
+        fflush(stdin );// ren ko sai cai ni cai kia cum dc ma hun dc rua � ngua mat
+        
         getline(cin, diseaseName);
         cout << "Enter Medical Expenses: ";
         cin >> medicalExpenses;
@@ -52,14 +54,14 @@ public:
     }
 
     double calculate() {
-        double totalCost = medicalExpenses;
+        //double totalCost = medicalExpenses;
         if (yearOfBirth < 1960)
-            totalCost *= 0.9; // 10%
-        return totalCost;
+           // medicalExpenses *= 0.9; // 10% // he qua   rua chi
+        return medicalExpenses * 0.9;
     }
 };
 
-class Outpatient : public Person {
+class Inpatient : public Person {
 private:
     string diagnosedDiseaseName;
     double drugMoney;
@@ -91,7 +93,7 @@ public:
         double staysDiscount = staysMoney * 0.08;
         totalCost -= (drugDiscount + staysDiscount);
     }
-    return totalCost;
+    return totalCost;//************
 }
 
 };
@@ -99,53 +101,44 @@ public:
 class PhongKham {
 private:
     vector<Person*> patientList;
+    int numPatients;
 
 public:
     void inputPatientList() {
-        int numPatients;
+
         cout << "Enter the number of patients: ";
-        cin >> numPatients;
-
+	   cin >> numPatients;
 	   for (int i = 0; i < numPatients; i++) {
-    cout << "Patient " << i + 1 << ":" << endl;
-    int patientType;
-    cout << "Enter patient type (1 - Inpatient, 2 - Outpatient): ";
-    cin >> patientType;
-
-    Person* patient = 0; // Khởi tạo con trỏ patient với giá trị 0
-
-    if (patientType == 1) {
-        patient = new Inpatient();
-    } else if (patientType == 2) {
-        patient = new Outpatient();
-    } else {
-        cout << "Invalid patient type. Skipping..." << endl;
-        continue;
-    }
-
-    patient->input();
-    patientList.push_back(patient);
-}
-
-    }
-
-    void printPatientList() {
+       cout << "Patient " << i + 1 << ":" << endl;
+		int patientType;
+		cout << "Enter patient type (1 - Inpatient, 2 - Outpatient): ";
+         cin >> patientType;
+          system("cls");
+			if (patientType == 1) {
+               Inpatient *ip  = new Inpatient();
+						ip->input();
+				patientList.push_back( ip ) ;
+			}
+			else if (patientType == 2)
+			{
+					Outpatient  *op = new Outpatient();
+					op->input();
+					patientList.push_back(op);
+			}
+          }
+       }
+void printPatientList() {
     cout << "Patient List:" << endl;
-    for (int i = 0; i < patientList.size(); i++) {
-        Person* patient = patientList[i];
-        patient->output();
-        double totalCost = patient->calculate();
-        cout << fixed << setprecision(2);
-        cout << "Total Cost: $" << totalCost << endl;
-        cout << endl;
+    for (int i = 0; i <  numPatients; i++) {
+			   patientList[i]->output();
          }
    }
 
 
-    void sortPatientListByName() {
+  /*  void sortPatientListByName() {
         sort(patientList.begin(), patientList.end(), [](Person* a, Person* b) {
             return a->getName() < b->getName();
-        });
+        }
     }
 
     double calculateTotalPayment() {
@@ -160,18 +153,18 @@ public:
     for (int i = 0; i < patientList.size(); i++) {
         delete patientList[i];
     }
-  }
 
+   }*/
 };
 
 int main() {
     PhongKham phongKham;
     phongKham.inputPatientList();
-    phongKham.sortPatientListByName();
+    //phongKham.sortPatientListByName();
     phongKham.printPatientList();
 
-    double totalPayment = phongKham.calculateTotalPayment();
-    cout << "Total Payment: $" << fixed << setprecision(2) << totalPayment << endl;
+   // double totalPayment = phongKham.calculateTotalPayment();
+    //cout << "Total Payment: $" << fixed << setprecision(2) << totalPayment << endl;
 
     return 0;
 }
