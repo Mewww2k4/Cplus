@@ -8,7 +8,7 @@ private:
 
 public:
     IntArr() {
-        a = NULL;
+        a = 0;
         size = 0;
     }
 
@@ -43,7 +43,7 @@ public:
         cout << endl;
     }
 
-    IntArr operator+(const IntArr& b) const {
+    IntArr operator+(const IntArr& b) {
         if (size != b.size) {
             cout << "Arrays must have the same size for addition." << endl;
             return IntArr();
@@ -58,18 +58,17 @@ public:
 
         return res;
     }
-
-friend ostream& operator<<(ostream& os, const IntArr& obj) {
-    os << "[";
-    for (int i = 0; i < obj.size; i++) {
-        os << obj.a[i];
-        if (i < obj.size - 1) {
-            os << ", ";
+    friend ostream& operator<<(ostream& os, const IntArr& obj) {
+        os << "[";
+        for (int i = 0; i < obj.size; i++) {
+            os << obj.a[i];
+            if (i < obj.size - 1) {
+                os << ", ";
+            }
         }
+        os << "]";
+        return os;
     }
-    os << "]";
-    return os;
-}
 
 };
 
@@ -80,12 +79,12 @@ int main() {
 
     IntArr arr3;
     arr3 = arr1 + arr2;
-
-    if (arr3.getSize() == 0) {
-        cout << "Cannot add arrays. Sizes are different." << endl;
-    } else {
-        cout << "The new Array Arr3: " << arr3 << endl;
-    }
+    cout << arr3;
+    //    if (arr3.getSize() == 0) {
+    //        cout << "Cannot add arrays. Sizes are different." << endl;
+    //    } else {
+    //        cout << "The new Array Arr3: " << arr3 << endl;
+    //    }
 
     return 0;
 }
