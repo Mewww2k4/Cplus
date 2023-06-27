@@ -40,7 +40,7 @@ public:
         Person::input();
         cout << "Enter Disease Name: ";
         //cin.ignore();
-        fflush(stdin );// ren ko sai cai ni cai kia cum dc ma hun dc rua à ngua mat
+        fflush(stdin );// ren ko sai cai ni cai kia cum dc ma hun dc rua ï¿½ ngua mat
         
         getline(cin, diseaseName);
         cout << "Enter Medical Expenses: ";
@@ -57,7 +57,7 @@ public:
         //double totalCost = medicalExpenses;
         if (yearOfBirth < 1960)
            // medicalExpenses *= 0.9; // 10% // he qua   rua chi
-        return medicalExpenses * 0.9;
+        return medicalExpenses * 0.92;
     }
 };
 
@@ -135,8 +135,8 @@ void printPatientList() {
    }
 
 
-  /*  void sortPatientListByName() {
-        sort(patientList.begin(), patientList.end(), [](Person* a, Person* b) {
+   void sortPatientListByName() {
+        sort(patientList.begin(), patientList.end(), [](Person* a, Person* b)) {
             return a->getName() < b->getName();
         }
     }
@@ -154,7 +154,7 @@ void printPatientList() {
         delete patientList[i];
     }
 
-   }*/
+   }
 };
 
 int main() {
@@ -163,8 +163,8 @@ int main() {
     //phongKham.sortPatientListByName();
     phongKham.printPatientList();
 
-   // double totalPayment = phongKham.calculateTotalPayment();
-    //cout << "Total Payment: $" << fixed << setprecision(2) << totalPayment << endl;
+    double totalPayment = phongKham.calculateTotalPayment();
+    cout << "Total Payment: $" << fixed << setprecision(2) << totalPayment << endl;
 
     return 0;
 }
